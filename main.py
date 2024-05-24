@@ -61,6 +61,6 @@ def solve():
 
 
 if __name__ == "__main__":
-    grid = Grid().create()
+    grid = Grid().create() # Scrape the grid from www.websudoku.com
     print(grid)
     solve()
