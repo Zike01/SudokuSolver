@@ -1,4 +1,5 @@
 import pyautogui as pg
+from grid import Grid
 import time
 
 def possible(x,y,n):
@@ -26,11 +27,11 @@ def possible(x,y,n):
 def fill_grid(matrix):
     print("click the top left tile of the sudoku puzzle")
     time.sleep(1)
-    
+
     for i in range(3,0,-1):
         print(f"{i}")
         time.sleep(1)
-        
+
     final_inputs = []
     for row in matrix:
         for elt in row:
@@ -38,14 +39,12 @@ def fill_grid(matrix):
 
     counter = 0
     for num in final_inputs:
+        counter += 1
         pg.press(num)
         pg.press("right")
-        counter += 1
 
         if counter % 9 == 0:
             pg.press("down")
-            for _ in range(8):
-                pg.press("left")
 
 
 def solve():
@@ -62,12 +61,6 @@ def solve():
 
 
 if __name__ == "__main__":
-    grid = []
-    for i in range(9):
-        row = []
-
-        while len(row) != 9:
-            row = [int(n) for n in list(input(f"Row {i+1}: "))]
-        grid.append(row)
-        print(f"row {i+1} complete")
+    grid = Grid().create()
+    print(grid)
     solve()
